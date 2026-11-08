@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const queryTerm = document.getElementById('queryTerm');
 
     const searchTypeInputs = document.getElementsByName('searchType');
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
     searchBtn.addEventListener('click', handleSearch);
     artistInput.addEventListener('keypress', (e) => {
@@ -48,10 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (searchType === 'artist') {
-            url = '/v1/artista';
+            url = `${API_BASE_URL}/v1/artista`;
             params.append('tipo', 'ALBUM,SINGLE');
         } else {
-            url = '/v1/podcast';
+            url = `${API_BASE_URL}/v1/podcast`;
         }
 
         const response = await fetch(`${url}?${params.toString()}`);
@@ -107,6 +108,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 card.appendChild(count);
                 card.appendChild(label);
+
+                if (result.consulta) {
+                    const matched = document.createElement('div');
+                    matched.className = 'result-matched';
+                    matched.title = `Retornado: ${result.consulta}`;
+
+                    const matchedLabel = document.createElement('span');
+                    matchedLabel.className = 'matched-label';
+                    matchedLabel.textContent = 'Retornado:';
+
+                    const matchedName = document.createElement('span');
+                    matchedName.className = 'matched-name';
+                    matchedName.textContent = result.consulta;
+
+                    matched.appendChild(matchedLabel);
+                    matched.appendChild(matchedName);
+                    card.appendChild(matched);
+                }
             }
 
             resultsGrid.appendChild(card);

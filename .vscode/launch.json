@@ -4,9 +4,25 @@
         {
             "type": "chrome",
             "request": "launch",
+            "name": "Frontend (Local - Docker)",
+            "url": "http://localhost:8081",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Frontend (Local - Docker)"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Frontend (Prod - Railway)",
+            "url": "http://localhost:8081",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Frontend (Prod - Railway)"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
             "name": "Open Frontend (Local Server)",
             "url": "http://localhost:8081",
-            "webRoot": "${workspaceFolder}/Frontend",
+            "webRoot": "${workspaceFolder}",
             "preLaunchTask": "Start Frontend Server"
         }
     ]

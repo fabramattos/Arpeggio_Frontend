@@ -2,9 +2,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Start Frontend Server",
+            "label": "Start Frontend (Local - Docker)",
             "type": "shell",
-            "command": "npm.cmd run dev",
+            "command": "npm run dev:local",
             "isBackground": true,
             "problemMatcher": {
                 "pattern": {
@@ -20,6 +20,30 @@
                 "reveal": "always",
                 "panel": "dedicated"
             }
+        },
+        {
+            "label": "Start Frontend (Prod - Railway)",
+            "type": "shell",
+            "command": "npm run dev:prod",
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^.*$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "Vite",
+                    "endsPattern": "Local:"
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Start Frontend Server",
+            "dependsOn": "Start Frontend (Local - Docker)"
         }
     ]
 }
